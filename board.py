@@ -71,6 +71,7 @@ class Board:
 
         return False
 
+
     def play_game():
         board = Board()
         game_over = False
@@ -109,7 +110,14 @@ class Board:
 
             turn += 1
 
+            """
+            if turn == 5:
+                board.undo_move()
+            if turn == 6:
+                board.reset()
+            """
         print("Game over.")
+
 
 
 # Run the game
