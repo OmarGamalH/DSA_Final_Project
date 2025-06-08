@@ -4,6 +4,13 @@ import sys
 
 from columnstack import ColumnStack
 
+def __init__(self):
+self.rows=7
+self.cols=7
+self.board =np.zeros ((self.rows,self.cols),dtype=int)
+self.columns =[ColumnStack () for_in range(self.cols)]
+#for undoo
+self.move_history = []
 
 def create_board():
     board = np.zeros((7,7))
@@ -37,3 +44,11 @@ while start_game:
         columns[position].push_piece(value)
         row = (columns[position].length - 1)
         board[row][position]= value
+    else:
+        print("This column is full. Try again.")
+        Player_turn -= 1  
+        continue
+ def push_piece(self, value):
+
+def display_board ():
+def check_win(board, player):
