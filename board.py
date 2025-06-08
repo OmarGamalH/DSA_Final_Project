@@ -12,9 +12,49 @@ self.columns =[ColumnStack () for_in range(self.cols)]
 #for undoo
 self.move_history = []
 
+
+
+def display (self):
+print ("\Current Board :")
+print (np.flip(self.Board ,0))
+
+
+ def is_valid_location(self, col):
+     return not self.columns[col].is_full()
+
+
+ def drop_piece(self, col, player):
+        if not self.is_valid_location(col):
+            raise ValueError("Column is full")
+        row = self.columns[col].length
+        self.columns[col].push_piece(player)
+        self.board[row][col] = player
+        self.move_history.append((row, col))
+        return row
+     
+  def is_full(self):
+     return all(col.is_full() for col in self.columns)
+
+
+
+  def reset(self):
+     self.board = np.zeros((self.rows, self.cols), dtype=int)
+    self.columns = [ColumnStack() for _ in range(self.cols)]
+    self.move_history.clear()
+
+
+
+
+
+
+
+
+###########mona 
 def create_board():
     board = np.zeros((7,7))
     return board
+
+
 def vaild_location(board,position):
     return board[6][position] == 0
 board =  create_board()
