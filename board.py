@@ -9,6 +9,7 @@ from columnstack import ColumnStack
 
 
 class ColumnStack:
+    #initialize an empty stack for a single column 
     def __init__(self):
         self.stack = []
 
@@ -16,29 +17,19 @@ class ColumnStack:
     def length(self):
         return len(self.stack)
 
-    def push_piece(self, value):
-        if self.length < 7:
-            self.stack.append(value)
-        else:
-            raise Exception("Column is full")
-
-    def get_stack(self):
-        return self.stack
 
     def push_piece(self, value):
         if len(self.stack) < 7:
             self.stack.append(value)
         else:
             raise ValueError("Column is full")
-
+#for undo
     def pop_piece(self):
         if self.stack:
             return self.stack.pop()
         else:
             return None
 
-    def peek(self):
-        return self.stack[-1] if self.stack else None
 
     def is_full(self):
         return len(self.stack) >= 7
@@ -54,14 +45,16 @@ def __init__(self):
 self.rows=7
 self.cols=7
 self.board =np.zeros ((self.rows,self.cols),dtype=int)
+# Each column is implemented as a separate stack (vertical logic)
 self.columns =[ColumnStack () for_in range(self.cols)]
-#for undoo
+#for undoo  Track all moves (row, col)
 self.move_history = []
 
 
 
 def display (self):
 print ("\Current Board :")
+ # Print the board flipped vertically (so row 0 is at the bottom)
 print (np.flip(self.Board ,0))
 
 
@@ -100,7 +93,6 @@ print (np.flip(self.Board ,0))
     def check_win(self, player):
         b = self.board
 
-        # Horizontal
         for r in range(self.rows):
             for c in range(self.cols - 3):
                 if all(b[r][c+i] == player for i in range(4)):
@@ -128,7 +120,8 @@ print (np.flip(self.Board ,0))
 def play_game():
     board = Board()
     game_over = False
-    turn = 0
+     # Turn counter: even = Player 1, odd = Player 2
+    turn = 0 
 
     board.display()
 
