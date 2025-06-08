@@ -4,6 +4,52 @@ import sys
 
 from columnstack import ColumnStack
 
+
+
+
+
+class ColumnStack:
+    def __init__(self):
+        self.stack = []
+
+    @property
+    def length(self):
+        return len(self.stack)
+
+    def push_piece(self, value):
+        if self.length < 7:
+            self.stack.append(value)
+        else:
+            raise Exception("Column is full")
+
+    def get_stack(self):
+        return self.stack
+
+    def push_piece(self, value):
+        if len(self.stack) < 7:
+            self.stack.append(value)
+        else:
+            raise ValueError("Column is full")
+
+    def pop_piece(self):
+        if self.stack:
+            return self.stack.pop()
+        else:
+            return None
+
+    def peek(self):
+        return self.stack[-1] if self.stack else None
+
+    def is_full(self):
+        return len(self.stack) >= 7
+
+
+
+
+
+
+
+class Board:
 def __init__(self):
 self.rows=7
 self.cols=7
@@ -42,7 +88,88 @@ print (np.flip(self.Board ,0))
     self.columns = [ColumnStack() for _ in range(self.cols)]
     self.move_history.clear()
 
+   def undo_move(self):
+        if not self.move_history:
+            return
+        row, col = self.move_history.pop()
+        self.columns[col].pop_piece()
+        self.board[row][col] = 0
 
+
+
+    def check_win(self, player):
+        b = self.board
+
+        # Horizontal
+        for r in range(self.rows):
+            for c in range(self.cols - 3):
+                if all(b[r][c+i] == player for i in range(4)):
+                    return True
+
+        # Vertical
+        for c in range(self.cols):
+            for r in range(self.rows - 3):
+                if all(b[r+i][c] == player for i in range(4)):
+                    return True
+
+        # Positive diagonal (/)
+        for r in range(3, self.rows):
+            for c in range(self.cols - 3):
+                if all(b[r-i][c+i] == player for i in range(4)):
+                    return True
+
+        # Negative diagonal (\)
+        for r in range(self.rows - 3):
+            for c in range(self.cols - 3):
+                if all(b[r+i][c+i] == player for i in range(4)):
+                    return True
+
+        return False
+def play_game():
+    board = Board()
+    game_over = False
+    turn = 0
+
+    board.display()
+
+    while not game_over:
+        player = 1 if turn % 2 == 0 else 2
+        print(f"\nPlayer {player}'s turn")
+
+        try:
+            col = int(input("Choose a column (0–6): "))
+            if col < 0 or col >= board.cols:
+                print(" Invalid column. Try again.")
+                continue
+        except ValueError:
+            print(" Invalid input. Enter a number from 0 to 6.")
+            continue
+
+        if not board.is_valid_location(col):
+            print(" This column is full. Try another one.")
+            continue
+
+
+        board.drop_piece(col, player)
+        board.display()
+
+        if board.check_win(player):
+            print(f"\n Player {player} WINS ")
+            game_over = True
+            break
+
+
+        if board.is_full():
+            print("\n🟰 It's a draw The board is full.")
+            break
+
+        turn += 1
+
+    print("Game over.")
+
+# Run the game
+if __name__ == "__main__":
+    play_game()
 
 
 
@@ -50,6 +177,7 @@ print (np.flip(self.Board ,0))
 
 
 ###########mona 
+"""
 def create_board():
     board = np.zeros((7,7))
     return board
@@ -88,7 +216,4 @@ while start_game:
         print("This column is full. Try again.")
         Player_turn -= 1  
         continue
- def push_piece(self, value):
-
-def display_board ():
-def check_win(board, player):
+"""
