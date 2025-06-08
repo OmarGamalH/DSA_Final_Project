@@ -105,7 +105,7 @@ class Board:
                 break
 
             if board.is_full():
-                print("\n🟰 It's a draw. The board is full.")
+                print("\n It's a draw. The board is full.")
                 break
 
             turn += 1
