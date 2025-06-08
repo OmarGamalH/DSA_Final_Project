@@ -4,42 +4,6 @@ import sys
 
 from columnstack import ColumnStack
 
-
-
-
-
-class ColumnStack:
-    #initialize an empty stack for a single column 
-    def __init__(self):
-        self.stack = []
-
-    @property
-    def length(self):
-        return len(self.stack)
-
-
-    def push_piece(self, value):
-        if len(self.stack) < 7:
-            self.stack.append(value)
-        else:
-            raise ValueError("Column is full")
-#for undo
-    def pop_piece(self):
-        if self.stack:
-            return self.stack.pop()
-        else:
-            return None
-
-
-    def is_full(self):
-        return len(self.stack) >= 7
-
-
-
-
-
-
-
 class Board:
 def __init__(self):
 self.rows=7
