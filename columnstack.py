@@ -10,30 +10,30 @@ class ColumnStack:
         self.length = 0
         self.maxlength = 7
 
-    def push_piece(self,value):
-        new_piece = Piece(value)
-        if self.length == 0:
-            self.head = new_piece
-            self.tail = new_piece
-            self.length +=1
-
-        else:
-            self.tail.next = new_piece
-            self.tail = new_piece
+    def push_piece(self, value):
+        if self.length < self.maxlength:
+            new_piece = Piece(value)
+            new_piece.next = self.top
+            self.top = new_piece
             self.length += 1
+        else:
+            raise Exception("Column is full")
 
     def pop_piece(self):
-        if self.length < 2:
-            self.head = None
-            self.tail = None
-            self.length = 0
-
+        if self.top is not None:
+            self.top = self.top.next
+            self.length -= 1
         else:
-          current = self.head
+            raise ValueError("Column is empty")
 
-          while current.next != self.tail:
-            current = current.next
-          self.tail = current
-          current.next = None
-          self.length -=1
+    def length(self):
+        return self.length
+
+    def is_full(self):
+        return self.length >= self.maxlength
+
+    def peek(self):
+        if self.top != None:
+            return self.top
+        else: return None
 
