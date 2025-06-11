@@ -22,6 +22,7 @@ root.title("Connect 4 - Player Turns")
 
 # dark theme
 style = Style("darkly")
+root.configure(bg="#1e3d59")
 
 player1 = None
 player2 = None
@@ -30,7 +31,8 @@ current_player = None
 # Setting dimensions
 canvas_width = COLS * CELL_SIZE
 canvas_height = (ROWS + 1) * CELL_SIZE
-canvas = tk.Canvas(root, width=canvas_width, height=canvas_height, bg="#1f1f2e", highlightthickness=0)
+canvas = tk.Canvas(root, width=canvas_width, height=canvas_height, bg="#1e3d59", highlightthickness=0)
+
 canvas.pack(padx=20, pady=20)
 
 #displaying player turn
@@ -42,6 +44,8 @@ error_label.pack()
 #game board
 def draw_board():
     canvas.delete("board")
+    canvas.create_rectangle(0, 0, canvas_width, canvas_height, fill="#1e3d59", width=0, tags="board")
+
     for r in range(ROWS):
         for c in range(COLS):
             x0 = c * CELL_SIZE + PADDING
@@ -52,13 +56,12 @@ def draw_board():
             # Get cell value to determine color
             value = board.board[ROWS - 1 - r][c]
             if value == 0:
-                color = "white"
+                color = "white" #empty
             elif value == player1.number:
                 color = player1.color
             else:
                 color = player2.color
 
-            # Draw it as a circle
             canvas.create_oval(x0, y0, x1, y1, fill=color, outline="gray", tags="board")
 
 # player names
@@ -91,7 +94,7 @@ def ask_player_names():
         player1 = Player(1, name1, "red")
         player2 = Player(2, name2, "yellow")
         current_player = player1
-        player_label.config(text=f"{current_player.name}'s Turn")
+        player_label.config(text=f"{current_player.name}'s Turn", bg=current_player.color, fg="blue")
 
     # Handle Start button
     def on_start():
@@ -111,14 +114,15 @@ def update_hover(event):
     if col < 0 or col >= COLS:
         return
 
-    # Calculate hover circle position
     x0 = col * CELL_SIZE + PADDING
     y0 = PADDING
     x1 = x0 + CELL_SIZE - 2 * PADDING
     y1 = y0 + CELL_SIZE - 2 * PADDING
 
-    color = current_player.color
-    hover_circle = canvas.create_oval(x0, y0, x1, y1, fill=color, outline="", tags="hover")
+    canvas.create_oval(x0, y0, x1, y1, fill="#1e3d59", outline="", tags="hover")
+
+
+    hover_circle = canvas.create_oval(x0, y0, x1, y1, fill=current_player.color, outline="white", width=2, tags="hover")
 
 # Handle click to drop a piece
 def handle_click(event):
@@ -130,7 +134,7 @@ def handle_click(event):
 
     # If column is full
     if not board.is_valid_location(col):
-        error_label.config(text="⚠️ Column is full, choose another column.")
+        error_label.config(text="⚠️ Column is full, choose another column.",bg="#1e3d59")
         return
     else:
         error_label.config(text="")
@@ -145,6 +149,8 @@ def handle_click(event):
         canvas.unbind("<Button-1>")
         canvas.unbind("<Motion>")
         canvas.delete("board")
+        canvas.create_rectangle(0, 0, canvas_width, canvas_height, fill="#1e3d59", width=0)
+
         player_label.config(text="")
 
         # Show win message
@@ -164,7 +170,7 @@ def handle_click(event):
 
     # Switch to next player
     current_player = player2 if current_player == player1 else player1
-    player_label.config(text=f"{current_player.name}'s Turn")
+    player_label.config(text=f"{current_player.name}'s Turn", bg=current_player.color, fg="blue")
 
 # Reset the game
 def reset_game():
@@ -174,7 +180,7 @@ def reset_game():
     draw_board()
     canvas.bind("<Button-1>", handle_click)
     canvas.bind("<Motion>", update_hover)
-    player_label.config(text=f"{current_player.name}'s Turn")
+    player_label.config(text=f"{current_player.name}'s Turn", bg=current_player.color, fg="blue")
 
     if win_text_id:
         canvas.delete(win_text_id)
@@ -191,7 +197,7 @@ canvas.bind("<Button-1>", handle_click)
 # Initialization board and game
 draw_board()
 ask_player_names()
-player_label.config(text=f"{current_player.name}'s Turn")
+player_label.config(text=f"{current_player.name}'s Turn", bg=current_player.color, fg="blue")
 
 # Starting the main
 root.mainloop()
