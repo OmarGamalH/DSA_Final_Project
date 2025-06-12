@@ -21,7 +21,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 
 > The *Linear Search Algorithm* is used to check for win diagonally, horizontally or vertically.
 
-> *Stack Data Structure* used to push & pop a move that has been made by a player.
+> *Stack Data Structure* used to push and pop a move that has been made by a player.
 
 > *Array* used to save the move history.
 
