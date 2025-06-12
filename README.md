@@ -36,7 +36,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
   </tr>
   <tr>
     <td><img src="https://github.com/user-attachments/assets/bceaafd5-16df-4ca5-a885-826ad2559ddc" alt="Before" width="300"/></td>
-    <td><img src="https://github.com/user-attachments/assets/02bb9465-ff8f-4078-9155-1c4cfbd44d42" alt="After" width="300"/></td>
+    <td><img src="https://github.com/user-attachments/assets/b768e5fd-004d-4add-ae74-fe7e8157bc06" alt="After" width="300"/></td>
   </tr>
 </table>
 
