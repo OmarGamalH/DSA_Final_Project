@@ -5,6 +5,7 @@ from board import Board
 from player import Player
 from playsound import playsound
 import os
+import random 
 
 # Game configuration
 ROWS, COLS = 7, 7
@@ -18,6 +19,30 @@ board = Board()
 current_player = 1
 hover_circle = None
 win_text_id = None
+# Solver 
+class solver:
+    name = "solver"
+    number = 2
+    color = "yellow"
+    solved = False
+    def solve(self):
+
+        global board
+        for c in range(COLS):
+            col = board.columns[c]
+            if col.top != None and col.top.value == self.number and not col.is_full():
+                board.drop_piece(c , current_player.number)
+                draw_board()
+                self.solved = True
+                break
+
+        if not self.solved:
+            number = random.randint(0 , COLS - 1)
+            while board.columns[number].is_full():
+                number = random.randint(0 , COLS - 1)
+            board.drop_piece(number , current_player.number)
+            draw_board()
+        self.solved = False
 
 # GUI
 root = tk.Tk()
@@ -87,15 +112,19 @@ def ask_player_names():
     p1_entry.pack()
 
     # Entry for Player 2
-    tk.Label(dialog, text="Player 2 (Yellow):", bg="#1f1f2e", fg="white").pack(pady=(10, 5))
+    tk.Label(dialog, text="Player 2 (Yellow) (type 'solver' to play with computer):", bg="#1f1f2e", fg="white").pack(pady=(10, 5))
     p2_entry = tk.Entry(dialog)
     p2_entry.pack()
+    
 
     # Create Player objects
     def create_players(name1, name2):
         global player1, player2, current_player
         player1 = Player(1, name1, "red")
-        player2 = Player(2, name2, "yellow")
+        if name2 == "solver" :
+            player2 = solver()
+        else: 
+            player2 = Player(2, name2, "yellow")
         current_player = player1
         player_label.config(text=f"{current_player.name}'s Turn", bg=current_player.color, fg="blue")
 
@@ -110,42 +139,43 @@ def ask_player_names():
     dialog.wait_window(dialog)
 
 def update_hover(event):
-    global hover_circle
-    canvas.delete("hover")
+    if not (current_player == player2 and player2.name == "solver"): 
+        global hover_circle
+        canvas.delete("hover")
 
-    col = event.x // CELL_SIZE
-    if col < 0 or col >= COLS:
-        return
+        col = event.x // CELL_SIZE
+        if col < 0 or col >= COLS:
+            return
 
-    x0 = col * CELL_SIZE + PADDING
-    y0 = PADDING
-    x1 = x0 + CELL_SIZE - 2 * PADDING
-    y1 = y0 + CELL_SIZE - 2 * PADDING
+        x0 = col * CELL_SIZE + PADDING
+        y0 = PADDING
+        x1 = x0 + CELL_SIZE - 2 * PADDING
+        y1 = y0 + CELL_SIZE - 2 * PADDING
 
-    canvas.create_oval(x0, y0, x1, y1, fill="#1e3d59", outline="", tags="hover")
+        canvas.create_oval(x0, y0, x1, y1, fill="#1e3d59", outline="", tags="hover")
 
 
-    hover_circle = canvas.create_oval(x0, y0, x1, y1, fill=current_player.color, outline="white", width=2, tags="hover")
+        hover_circle = canvas.create_oval(x0, y0, x1, y1, fill=current_player.color, outline="white", width=2, tags="hover")
 
 # Handle click to drop a piece
 def handle_click(event):
     global current_player, win_text_id
+    if not (current_player == player2 and player2.name == "solver"):
+        col = event.x // CELL_SIZE
+        if col < 0 or col >= COLS:
+            return
 
-    col = event.x // CELL_SIZE
-    if col < 0 or col >= COLS:
-        return
+        # If column is full
+        if not board.is_valid_location(col):
+            error_label.config(text="⚠️ Column is full, choose another column.",bg="#1e3d59")
+            return
+        else:
+            error_label.config(text="")
 
-    # If column is full
-    if not board.is_valid_location(col):
-        error_label.config(text="⚠️ Column is full, choose another column.",bg="#1e3d59")
-        return
-    else:
-        error_label.config(text="")
-
-    # Drop the piece and update board
-    board.drop_piece(col, current_player.number)
-    draw_board()
-    canvas.delete("hover")
+        # Drop the piece and update board
+        board.drop_piece(col, current_player.number)
+        draw_board()
+        canvas.delete("hover")
 
     # Check for win
     if board.check_win(current_player.number):
@@ -177,6 +207,9 @@ def handle_click(event):
 
     # Switch to next player
     current_player = player2 if current_player == player1 else player1
+    if current_player == player2 and player2.name == "solver":
+        player2.solve()
+        handle_click(event)
     player_label.config(text=f"{current_player.name}'s Turn", bg=current_player.color, fg="blue")
 
 # Reset the game
