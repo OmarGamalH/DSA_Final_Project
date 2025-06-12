@@ -13,7 +13,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 
 | Image 1 | Image 2 |
 |--------|---------|
-| ![Image1](Image1.png) | ![Image2](https://github.com/user-attachments/assets/4fa92ce3-268e-471f-a555-90787609e7fd) |
+| ![Image1](Image1.png) | ![Image2](Image2.png) |
 
 ---
 ## 💻 Data Structures Used
