@@ -68,6 +68,14 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 
 ---
 
+## 🤖 Solver Class – Simple AI for One-Player Mode
+
+The Solver class represents a basic automated opponent (AI) used in **1-Player Mode** of the Connect 4 game.
+
+### 📌 Purpose:
+This class provides a **basic AI opponent** for casual solo play. It is not strategic, but adds a fun and simple challenge by reacting to its previous moves or picking randomly.
+![Image](https://github.com/user-attachments/assets/bc70c54e-e531-4edd-b8ab-30474aa0e259)
+
 ## 🚀 Getting Started
 
 ### 🔧 Requirements
