@@ -22,7 +22,8 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 ## 📸 Preview
 
 # Switching Turns 
-![Image](https://github.com/user-attachments/assets/188bce34-f01f-4dc5-b61b-08f66f30d698)
+![Image](https://github.com/user-attachments/assets/71531b16-94e7-4ecb-ab7f-f45c2eb217d2)
+<div align="center">
 <table>
   <tr>
     <th>Blank Board</th> 
@@ -33,6 +34,9 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
     <td><img src="https://github.com/user-attachments/assets/02bb9465-ff8f-4078-9155-1c4cfbd44d42" alt="After" width="300"/></td>
   </tr>
 </table>
+
+</div>
+---
 ## 💻 Data Structures Used
 
 > A 2-D char array has been used to build the game board which allows players to make a move.
