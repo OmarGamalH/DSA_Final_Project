@@ -103,31 +103,50 @@ def ask_player_names():
     global player1, player2, current_player
 
     dialog = tk.Toplevel(root)
-    dialog.title("Enter Player Names")
+    dialog.title("Choose Game Mode")
     dialog.configure(bg="#1f1f2e")
-    dialog.geometry("300x200")
+    dialog.geometry("350x300")
     dialog.resizable(False, False)
 
     dialog.transient(root)
     dialog.grab_set()
     dialog.attributes('-topmost', True)
 
-    # Entry for Player 1
-    tk.Label(dialog, text="Player 1 (Red):", bg="#1f1f2e", fg="white").pack(pady=(20, 5))
-    p1_entry = tk.Entry(dialog)
-    p1_entry.pack()
+    tk.Label(dialog, text="Select Game Mode", font=("Arial", 14, "bold"), bg="#1f1f2e", fg="white").pack(pady=(10, 5))
 
-    # Entry for Player 2
-    tk.Label(dialog, text="Player 2 (Yellow) (type 'solver' to play with computer):", bg="#1f1f2e", fg="white").pack(
-        pady=(10, 5))
+    mode_var = tk.StringVar(value="2")  # default to 2 players
+
+    # Radio buttons for game mode
+    tk.Radiobutton(dialog, text="1 Player (vs Computer)", variable=mode_var, value="1", bg="#1f1f2e", fg="white",
+                   selectcolor="#1e3d59").pack(pady=(5, 2))
+    tk.Radiobutton(dialog, text="2 Players", variable=mode_var, value="2", bg="#1f1f2e", fg="white",
+                   selectcolor="#1e3d59").pack(pady=(2, 10))
+
+    # Player 1 name input
+    tk.Label(dialog, text="Player 1 (Red):", bg="#1f1f2e", fg="white").pack()
+    p1_entry = tk.Entry(dialog)
+    p1_entry.pack(pady=(0, 10))
+
+    # Player 2 name input (conditionally shown)
+    p2_label = tk.Label(dialog, text="Player 2 (Yellow):", bg="#1f1f2e", fg="white")
     p2_entry = tk.Entry(dialog)
-    p2_entry.pack()
+
+    def update_visibility(*args):
+        if mode_var.get() == "2":
+            p2_label.pack()
+            p2_entry.pack()
+        else:
+            p2_label.pack_forget()
+            p2_entry.pack_forget()
+
+    mode_var.trace("w", update_visibility)
+    update_visibility()
 
     # Create Player objects
-    def create_players(name1, name2):
+    def create_players(name1, name2=None):
         global player1, player2, current_player
         player1 = Player(1, name1, "red")
-        if name2 == "solver":
+        if mode_var.get() == "1":
             player2 = solver()
         else:
             player2 = Player(2, name2, "yellow")
@@ -143,6 +162,7 @@ def ask_player_names():
 
     tk.Button(dialog, text="Start Game", command=on_start).pack(pady=20)
     dialog.wait_window(dialog)
+
 
 
 def update_hover(event):
