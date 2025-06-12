@@ -21,8 +21,10 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 ---
 ## 📸 Preview
 
-# Switching Turns
-![Image](https://github.com/user-attachments/assets/bceaafd5-16df-4ca5-a885-826ad2559ddc)
+# Switching Turns 
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/bceaafd5-16df-4ca5-a885-826ad2559ddc" alt="Image" width="400"/>
+</div>
 <div align="center">
 <table>
   <tr>
