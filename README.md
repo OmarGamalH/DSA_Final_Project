@@ -29,7 +29,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
     <th>Winning Message</th> 
   </tr>
   <tr>
-    <td><img src="(https://github.com/user-attachments/assets/f34414e1-0f8f-4e75-b68c-bad98c5a41d8" alt="Before" width="300"/></td>
+    <td><img src="https://github.com/user-attachments/assets/f34414e1-0f8f-4e75-b68c-bad98c5a41d8" alt="Before" width="300"/></td>
     <td><img src="https://github.com/user-attachments/assets/02bb9465-ff8f-4078-9155-1c4cfbd44d42" alt="After" width="300"/></td>
   </tr>
 </table>
