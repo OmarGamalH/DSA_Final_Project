@@ -3,13 +3,16 @@ from ttkbootstrap import Style
 from tkinter import simpledialog
 from board import Board
 from player import Player
+from playsound import playsound
+import os
 
 # Game configuration
 ROWS, COLS = 7, 7
 CELL_SIZE = 80
 PADDING = 10
 RADIUS = CELL_SIZE // 2 - 5
-
+music_path = "./victory_sound/victory_sound.mp3"
+music_played = False
 # Game initialization
 board = Board()
 current_player = 1
@@ -161,6 +164,10 @@ def handle_click(event):
             font=("Arial", 48, "bold"),
             fill="white"
         )
+        global music_played
+        if os.path.exists(music_path) and not music_played:
+            music_played = True
+            playsound(music_path)
         return
 
     # Check for draw
@@ -181,6 +188,8 @@ def reset_game():
     canvas.bind("<Button-1>", handle_click)
     canvas.bind("<Motion>", update_hover)
     player_label.config(text=f"{current_player.name}'s Turn", bg=current_player.color, fg="blue")
+    global music_played
+    music_played = False
 
     if win_text_id:
         canvas.delete(win_text_id)
