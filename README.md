@@ -15,6 +15,17 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 ![Image](https://github.com/user-attachments/assets/4fa92ce3-268e-471f-a555-90787609e7fd)
 ---
 
+## Data Structures Used
+
+> A 2-D char array has been used to build the game board which allows players to make a move.
+
+> The *Linear Search Algorithm* is used to check for win diagonally, horizontally or vertically.
+
+> *Stack Data Structure* used to push & pop a move that has been made by a player.
+
+> *Array* used to save the move history.
+
+
 ## 🧩 Features
 
 - ✅ 7x7 Game Grid  
