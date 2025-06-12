@@ -11,8 +11,9 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 
 ## 📸 Preview
 
-![Image](https://github.com/user-attachments/assets/012f3358-5534-48b3-9562-669bae198bfc)
-![Image](https://github.com/user-attachments/assets/4fa92ce3-268e-471f-a555-90787609e7fd)
+| Image 1 | Image 2 |
+|--------|---------|
+| ![Image1]([image1.png](https://github.com/user-attachments/assets/012f3358-5534-48b3-9562-669bae198bfc)) | ![Image2]([image2.png](https://github.com/user-attachments/assets/4fa92ce3-268e-471f-a555-90787609e7fd)) |
 ---
 
 ## Data Structures Used
