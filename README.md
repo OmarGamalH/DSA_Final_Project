@@ -11,10 +11,12 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 
 ## 📸 Preview
 
-| Switching Turns | Blank Board |
-|--------|---------|
-| ![Switching Turns](Image1.png) | ![Blank Board](Image2.png) |
-
+# Switching Turns 
+![Image](https://github.com/user-attachments/assets/188bce34-f01f-4dc5-b61b-08f66f30d698)
+# Blank Board
+![Image](https://github.com/user-attachments/assets/f34414e1-0f8f-4e75-b68c-bad98c5a41d8)
+# winning
+![Image](https://github.com/user-attachments/assets/02bb9465-ff8f-4078-9155-1c4cfbd44d42)
 ---
 ## 💻 Data Structures Used
 
