@@ -5,7 +5,7 @@ from board import Board
 from player import Player
 from playsound import playsound
 import os
-import random 
+import random
 
 # Game configuration
 ROWS, COLS = 7, 7
@@ -19,30 +19,34 @@ board = Board()
 current_player = 1
 hover_circle = None
 win_text_id = None
-# Solver 
+
+
+# Solver
 class solver:
     name = "solver"
     number = 2
     color = "yellow"
     solved = False
+
     def solve(self):
 
         global board
         for c in range(COLS):
             col = board.columns[c]
             if col.top != None and col.top.value == self.number and not col.is_full():
-                board.drop_piece(c , current_player.number)
+                board.drop_piece(c, current_player.number)
                 draw_board()
                 self.solved = True
                 break
 
         if not self.solved:
-            number = random.randint(0 , COLS - 1)
+            number = random.randint(0, COLS - 1)
             while board.columns[number].is_full():
-                number = random.randint(0 , COLS - 1)
-            board.drop_piece(number , current_player.number)
+                number = random.randint(0, COLS - 1)
+            board.drop_piece(number, current_player.number)
             draw_board()
         self.solved = False
+
 
 # GUI
 root = tk.Tk()
@@ -63,13 +67,14 @@ canvas = tk.Canvas(root, width=canvas_width, height=canvas_height, bg="#1e3d59",
 
 canvas.pack(padx=20, pady=20)
 
-#displaying player turn
+# displaying player turn
 player_label = tk.Label(root, text=f"Player {current_player}'s Turn", font=("Arial", 16), bg="#1f1f2e", fg="white")
 player_label.pack(pady=(0, 10))
 error_label = tk.Label(root, text="", font=("Arial", 14), fg="red", bg="#1f1f2e")
 error_label.pack()
 
-#game board
+
+# game board
 def draw_board():
     canvas.delete("board")
     canvas.create_rectangle(0, 0, canvas_width, canvas_height, fill="#1e3d59", width=0, tags="board")
@@ -84,13 +89,14 @@ def draw_board():
             # Get cell value to determine color
             value = board.board[ROWS - 1 - r][c]
             if value == 0:
-                color = "white" #empty
+                color = "white"  # empty
             elif value == player1.number:
                 color = player1.color
             else:
                 color = player2.color
 
             canvas.create_oval(x0, y0, x1, y1, fill=color, outline="gray", tags="board")
+
 
 # player names
 def ask_player_names():
@@ -112,18 +118,18 @@ def ask_player_names():
     p1_entry.pack()
 
     # Entry for Player 2
-    tk.Label(dialog, text="Player 2 (Yellow) (type 'solver' to play with computer):", bg="#1f1f2e", fg="white").pack(pady=(10, 5))
+    tk.Label(dialog, text="Player 2 (Yellow) (type 'solver' to play with computer):", bg="#1f1f2e", fg="white").pack(
+        pady=(10, 5))
     p2_entry = tk.Entry(dialog)
     p2_entry.pack()
-    
 
     # Create Player objects
     def create_players(name1, name2):
         global player1, player2, current_player
         player1 = Player(1, name1, "red")
-        if name2 == "solver" :
+        if name2 == "solver":
             player2 = solver()
-        else: 
+        else:
             player2 = Player(2, name2, "yellow")
         current_player = player1
         player_label.config(text=f"{current_player.name}'s Turn", bg=current_player.color, fg="blue")
@@ -138,8 +144,9 @@ def ask_player_names():
     tk.Button(dialog, text="Start Game", command=on_start).pack(pady=20)
     dialog.wait_window(dialog)
 
+
 def update_hover(event):
-    if not (current_player == player2 and player2.name == "solver"): 
+    if not (current_player == player2 and player2.name == "solver"):
         global hover_circle
         canvas.delete("hover")
 
@@ -154,8 +161,9 @@ def update_hover(event):
 
         canvas.create_oval(x0, y0, x1, y1, fill="#1e3d59", outline="", tags="hover")
 
+        hover_circle = canvas.create_oval(x0, y0, x1, y1, fill=current_player.color, outline="white", width=2,
+                                          tags="hover")
 
-        hover_circle = canvas.create_oval(x0, y0, x1, y1, fill=current_player.color, outline="white", width=2, tags="hover")
 
 # Handle click to drop a piece
 def handle_click(event):
@@ -167,7 +175,7 @@ def handle_click(event):
 
         # If column is full
         if not board.is_valid_location(col):
-            error_label.config(text="⚠️ Column is full, choose another column.",bg="#1e3d59")
+            error_label.config(text="⚠️ Column is full, choose another column.", bg="#1e3d59")
             return
         else:
             error_label.config(text="")
@@ -212,6 +220,7 @@ def handle_click(event):
         handle_click(event)
     player_label.config(text=f"{current_player.name}'s Turn", bg=current_player.color, fg="blue")
 
+
 # Reset the game
 def reset_game():
     global current_player, win_text_id
@@ -228,9 +237,40 @@ def reset_game():
         canvas.delete(win_text_id)
         win_text_id = None
 
-# Reset button
-reset_btn = tk.Button(root, text="Reset", command=reset_game, font=("Arial", 25, "bold"), width=9, height=1)
-reset_btn.pack(pady=(0, 10))
+def undo_last_move():
+    global current_player, win_text_id, music_played
+
+    if current_player.name == "solver":
+        return
+
+    board.undo_move()
+    current_player = player2 if current_player == player1 else player1
+    draw_board()
+    canvas.bind("<Button-1>", handle_click)
+    canvas.bind("<Motion>", update_hover)
+    player_label.config(text=f"{current_player.name}'s Turn", bg=current_player.color, fg="blue")
+
+    if win_text_id:
+        canvas.delete(win_text_id)
+        win_text_id = None
+
+    music_played = False
+    error_label.config(text="")
+
+
+
+button_frame = tk.Frame(root)
+button_frame.pack(pady=(0, 10))
+
+
+undo_btn = tk.Button(button_frame, text="Undo", command=undo_last_move,
+                     font=("Arial", 25, "bold"), width=9, height=1)
+undo_btn.pack(side="left", padx=5)
+
+#Reset
+reset_btn = tk.Button(button_frame, text="Reset", command=reset_game,
+                      font=("Arial", 25, "bold"), width=9, height=1)
+reset_btn.pack(side="left", padx=5)
 
 # mouse events
 canvas.bind("<Motion>", update_hover)
