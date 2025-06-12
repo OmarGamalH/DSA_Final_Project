@@ -8,7 +8,17 @@
 A modern and interactive **Connect 4** game built in Python using **Tkinter** for the GUI and **ttkbootstrap** for a stylish dark theme. It features custom player names, hover effects, win detection, and a responsive user interface.
 
 ---
+## 🕹️ How to Play
 
+1. Enter custom player names when prompted.
+2. Player 1 uses **Red**, Player 2 uses **Yellow**.
+3. Hover over a column to preview your move.
+4. Click to drop your piece in the selected column.
+5. The first player to connect four wins.
+6. If the board fills up, it's a draw.
+7. Click **Reset** to start a new game.
+
+---
 ## 📸 Preview
 
 # Switching Turns 
@@ -74,17 +84,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 
 ---
 
-## 🕹️ How to Play
 
-1. Enter custom player names when prompted.
-2. Player 1 uses **Red**, Player 2 uses **Yellow**.
-3. Hover over a column to preview your move.
-4. Click to drop your piece in the selected column.
-5. The first player to connect four wins.
-6. If the board fills up, it's a draw.
-7. Click **Reset** to start a new game.
-
----
 
 ## 🗂️ Project Structure
 
