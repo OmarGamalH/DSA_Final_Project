@@ -25,6 +25,9 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 <div align="center">
   <img src="https://github.com/user-attachments/assets/bceaafd5-16df-4ca5-a885-826ad2559ddc" alt="Image" width="400"/>
 </div>
+
+# Game States
+
 <div align="center">
 <table>
   <tr>
@@ -38,7 +41,9 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 </table>
 
 </div>
+
 ---
+
 ## 💻 Data Structures Used
 
 - A 2-D char array has been used to build the game board which allows players to make a move.
