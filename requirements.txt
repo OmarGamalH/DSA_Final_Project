@@ -1,2 +1,7 @@
 numpy
 ttkbootstrap
+tk
+sqlite3
+os
+random
+datetime
