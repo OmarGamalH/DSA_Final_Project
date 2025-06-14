@@ -47,7 +47,8 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 - Player scores are updated after each winning round.
 - Scores are displayed on the game interface to track each player’s progress.
 - The scoring system can be used to determine the overall winner after multiple rounds.
- ![Image](https://github.com/user-attachments/assets/f4609689-a4fc-4f95-9f8e-5911519a9fe4)
+
+![Image](https://github.com/user-attachments/assets/f4609689-a4fc-4f95-9f8e-5911519a9fe4)
 ---
 ## Database
 - A SQLite database is used to store game information.
