@@ -61,6 +61,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 -  Every completed round is recorded in a rounds table within the database.
 - Round results are saved immediately after the round ends to ensure data integrity.
 - This table can be used to retrieve past game sessions, replay rounds, or track player progress over multiple rounds.
+   ![Image](https://github.com/user-attachments/assets/88d4d6fb-9733-41e3-85ba-ac434935f324)
 ---
 ## Continue Prompt
 - After each round, a prompt asks players if they want to continue playing.
