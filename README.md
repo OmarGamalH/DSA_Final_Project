@@ -65,6 +65,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 - ✅ Reset Button to Restart the Game  
 - ✅ Dark Theme using ttkbootstrap  
 - ✅ Input Validation and User Feedback
+- ✅ Dashboard being saved in database
 
 ---
 
