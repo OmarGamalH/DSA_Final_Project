@@ -66,7 +66,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 - ✅ Dark Theme using ttkbootstrap  
 - ✅ Input Validation and User Feedback
 - ✅ Dashboard being saved in database
-
+- ✅ Undo button to undo the steps
 ---
 
 ## 🤖 Solver Class – Simple AI for One-Player Mode
