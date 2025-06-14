@@ -23,7 +23,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 
 # Blank Board
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/88fbcbd5-eb03-4a80-93e0-a0976d96e761)" alt="Image" width="400"/>
+  <img src="https://github.com/user-attachments/assets/88fbcbd5-eb03-4a80-93e0-a0976d96e761" alt="Image" width="400"/>
 </div>
 
 # Game States
@@ -48,7 +48,10 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 - Scores are displayed on the game interface to track each player’s progress.
 - The scoring system can be used to determine the overall winner after multiple rounds.
 
- ![Image](https://github.com/user-attachments/assets/f4609689-a4fc-4f95-9f8e-5911519a9fe4)
+<div align="center">
+  <img src="https://github.com/user-attachments/assets/f4609689-a4fc-4f95-9f8e-5911519a9fe4" alt="Image" width="400"/>
+</div>
+ 
 ---
 ## Database
 - A SQLite database is used to store game information.
