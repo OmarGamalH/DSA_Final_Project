@@ -213,7 +213,7 @@ def handle_click(event):
 
         # If column is full
         if not board.is_valid_location(col):
-            error_label.config(text="⚠️ Column is full, choose another column.", bg="#1e3d59")
+            error_label.config(text=" Column is full, choose another column.", bg="#1e3d59")
             return
         else:
             error_label.config(text="")
@@ -236,7 +236,7 @@ def handle_click(event):
         win_text_id = canvas.create_text(
             canvas_width // 2,
             canvas_height // 2 - 30,
-            text=f"🎉 {current_player.name} Wins!",
+            text=f" {current_player.name} Wins!",
             font=("Arial", 48, "bold"),
             fill="white"
         )
