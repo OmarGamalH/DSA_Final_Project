@@ -22,6 +22,7 @@ board = Board()
 current_player = 1
 hover_circle = None
 win_text_id = None
+
 # Database configurations
 start_date = None
 end_date = None
@@ -296,9 +297,22 @@ def undo_last_move():
 
     music_played = False
     error_label.config(text="")
+ 
 
+def dashboard():
+    window_table = tk.Tk("Dashboard")
+    window_table.title("Dashboard")
+    games = list(cursor.execute("SELECT * FROM game"))
+    games = [("Game id" , "Winner name" , "Winner number" , "Winner color" , "start date" , "End date")] + games
+    if len(games) > 0:
+        for i in range(len(games)):
+            for j in range(len(games[0])):
+                b = tk.Entry(window_table , text = "" ,  width=30, fg='blue', font=('Arial',10,'bold'))
+                b.grid(row = i , column = j)
+                b.insert(tk.END , games[i][j])
+    window_table.mainloop()
 
-
+    
 button_frame = tk.Frame(root)
 button_frame.pack(pady=(0, 10))
 
@@ -311,6 +325,11 @@ undo_btn.pack(side="left", padx=5)
 reset_btn = tk.Button(button_frame, text="Reset", command=reset_game,
                       font=("Arial", 25, "bold"), width=9, height=1)
 reset_btn.pack(side="left", padx=5)
+
+dashboard_btn = tk.Button(button_frame, text="dashboard", command=dashboard,
+                      font=("Arial", 25, "bold"), width=9, height=1)
+dashboard_btn.pack(side="left", padx=5)
+
 
 # mouse events
 canvas.bind("<Motion>", update_hover)

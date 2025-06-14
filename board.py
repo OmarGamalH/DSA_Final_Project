@@ -43,6 +43,15 @@ class Board:
         self.board[row][col] = 0
 
     def check_win(self, player):
+
+        """
+        check win algorithm 
+        for vertical check for each (r,c ) we check (r,c) , (r+1 ,c ) , ( r+2 ,c ) , (r+3 ,c )    Loops over 7 cols × 4 rows = 28 checks
+        for horizontal check for each (r,c ) we check  (r,c ), (r , c+1),(r ,c+2 ), (r,c+3 )  Loops over 7 rows × 4 cols = 28 checks
+        for diagonal/ check  for each (r,c ) we check  (r, c),(r-1, c+1),(r-2, c+2),(r-3, c+3)  4 rows × 4 cols = 16 checks
+        for diagonal \ check for each  (r,c ) we check (r, c),(r+1, c+1),(r+2, c+2),(r+3, c+3)  4 rows × 4 cols = 16 checks
+
+        """
         b = self.board
 
         # Horizontal
@@ -71,14 +80,7 @@ class Board:
 
         return False
 
-"""
-check win algorithm 
-for vertical check for each (r,c ) we check (r,c) , (r+1 ,c ) , ( r+2 ,c ) , (r+3 ,c )    Loops over 7 cols × 4 rows = 28 checks
-for horizontal check for each (r,c ) we check  (r,c ), (r , c+1),(r ,c+2 ), (r,c+3 )  Loops over 7 rows × 4 cols = 28 checks
-for diagonal/ check  for each (r,c ) we check  (r, c),(r-1, c+1),(r-2, c+2),(r-3, c+3)  4 rows × 4 cols = 16 checks
-for diagonal \ check for each  (r,c ) we check (r, c),(r+1, c+1),(r+2, c+2),(r+3, c+3)  4 rows × 4 cols = 16 checks
 
-"""
     def play_game():
         board = Board()
         game_over = False
