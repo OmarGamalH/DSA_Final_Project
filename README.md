@@ -122,6 +122,7 @@ connect4-gui/
 ├── piece.py          # Stack structure for each column
 ├── player.py         # Player class (name, number, color)
 ├── requirements.txt  # List of dependencies
+├── dashboard.db      # Database to save winners of each game
 └── README.md         # Project documentation
 ```
 
