@@ -23,7 +23,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 
 # Blank Board
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/88fbcbd5-eb03-4a80-93e0-a0976d96e761" alt="Image" width="400"/>
+  <img src="https://github.com/user-attachments/assets/df960826-7ada-431b-b477-978336bed824" alt="Image" width="400"/>
 </div>
 
 # Game States
