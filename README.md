@@ -58,7 +58,8 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 ## 🧩 Features
 
 - ✅ 7x7 Game Grid  
-- ✅ Two Player Mode with Custom Names  
+- ✅ Two Player Mode with Custom Names
+- ✅ Computer mode where you can play against the PC 
 - ✅ Hover Preview Before Dropping Piece  
 - ✅ Win Detection (Vertical, Horizontal, Diagonal)  
 - ✅ Draw Detection  
