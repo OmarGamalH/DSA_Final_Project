@@ -10,7 +10,7 @@ import sqlite3 as sql
 import random
 from tkinter import messagebox
 from datetime import datetime
-
+import pygame
 # Game configuration
 ROWS, COLS = 7, 7
 CELL_SIZE = 77
@@ -304,11 +304,11 @@ def handle_click(event):
 
     player_label.config(text=f"{current_player.name}'s Turn", bg=current_player.color, fg="blue")
 
-import os
-import pygame
+
 
 def play_victory_music():
-    music_path = r"C:\Users\ayema\Downloads\sound.mp3" 
+    current_path
+    music_path =  os.path.join(current_path , r"victory_sound\victory_sound.mp3")
     if os.path.exists(music_path):
         try:
             pygame.mixer.init()
@@ -321,7 +321,7 @@ def play_victory_music():
 
 
 def play_drop_sound():
-    drop_sound_path = r"C:\Users\ayema\Downloads\Drop.mp3"
+    drop_sound_path = os.path.join(current_path , "Drop Sound/Drop.mp3")
 
     if os.path.exists(drop_sound_path):
         try:
