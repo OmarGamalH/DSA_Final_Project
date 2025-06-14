@@ -71,7 +71,14 @@ class Board:
 
         return False
 
+"""
+check win algorithm 
+for vertical check for each (r,c ) we check (r,c) , (r+1 ,c ) , ( r+2 ,c ) , (r+3 ,c )
+for horizontal check for each (r,c ) we check  (r,c ), (r , c+1),(r ,c+2 ), (r,c+3 )
+for diagonal/ check  for each (r,c ) we check  (r, c),(r-1, c+1),(r-2, c+2),(r-3, c+3)
+for diagonal \ check for each  (r,c ) we check (r, c),(r+1, c+1),(r+2, c+2),(r+3, c+3)
 
+"""
     def play_game():
         board = Board()
         game_over = False
