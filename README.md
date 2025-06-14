@@ -68,6 +68,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 - ✅ Input Validation and User Feedback
 - ✅ Dashboard being saved in database
 - ✅ Undo button to undo the steps
+- ✅ Winning sound at the end of each game
 ---
 
 ## 🤖 Solver Class – Simple AI for One-Player Mode
