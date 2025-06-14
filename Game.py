@@ -5,7 +5,9 @@ from board import Board
 from player import Player
 from playsound import playsound
 import os
+import sqlite3 as sql
 import random
+from datetime import datetime
 
 # Game configuration
 ROWS, COLS = 7, 7
@@ -14,13 +16,28 @@ PADDING = 10
 RADIUS = CELL_SIZE // 2 - 5
 music_path = "./victory_sound/victory_sound.mp3"
 music_played = False
+
 # Game initialization
 board = Board()
 current_player = 1
 hover_circle = None
 win_text_id = None
-
-
+# Database configurations
+start_date = None
+end_date = None
+current_path = os.getcwd()
+data_path_name = "dashboard.db"
+full_path_db = os.path.join(current_path , data_path_name)
+con = sql.connect(full_path_db)
+cursor = con.cursor()
+cursor.execute("""CREATE TABLE IF NOT EXISTS game  ( 
+               game_id INTEGER PRIMARY KEY AUTOINCREMENT,
+               "winner name" VARCHAR(255),
+               "winner number" INTEGER,
+               "winner color" VARCHAR(255),
+               startdate VARCHAR(255),
+               enddate VARCHAR(255)
+               )""")
 # Solver
 class solver:
     name = "solver"
@@ -144,7 +161,8 @@ def ask_player_names():
 
     # Create Player objects
     def create_players(name1, name2=None):
-        global player1, player2, current_player
+        global player1, player2, current_player , start_date
+        start_date = datetime.now()
         player1 = Player(1, name1, "red")
         if mode_var.get() == "1":
             player2 = solver()
@@ -222,6 +240,8 @@ def handle_click(event):
             font=("Arial", 48, "bold"),
             fill="white"
         )
+        cursor.execute("INSERT INTO game('winner name' , 'winner number' , 'winner color' , startdate , enddate) VALUES(? , ? , ? ,  ? , ?)" , (current_player.name , current_player.number , current_player.color , start_date , datetime.now()) )
+        con.commit()
         global music_played
         if os.path.exists(music_path) and not music_played:
             music_played = True
@@ -303,3 +323,4 @@ player_label.config(text=f"{current_player.name}'s Turn", bg=current_player.colo
 
 # Starting the main
 root.mainloop()
+cursor.close()
