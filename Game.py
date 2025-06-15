@@ -77,7 +77,7 @@ root = tk.Tk()
 root.title("Connect 4 - Player Turns")
 
 # dark theme
-style = Style("litera")
+style = Style("darkly")
 root.configure(bg="#1e3d59")
 
 score_label = tk.Label(root, text="", font=("Arial", 20), bg="#1e3d59", fg="white")
