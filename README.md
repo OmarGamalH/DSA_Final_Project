@@ -68,6 +68,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 - If players agree, a new round starts with the board reset but scores retained.
 - If players decline, the game ends and a final summary is displayed.
 - This feature improves user experience by allowing seamless multiple rounds without restarting the game manually.
+  ![Image](https://github.com/user-attachments/assets/54c13d75-2458-4f88-bf48-eae8ed222af1)
 
 ## 💻 Data Structures Used
 
