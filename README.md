@@ -69,7 +69,7 @@ A modern and interactive **Connect 4** game built in Python using **Tkinter** fo
 - If players decline, the game ends and a final summary is displayed.
 - This feature improves user experience by allowing seamless multiple rounds without restarting the game manually.
   <div align="center">
-  <img src="https://github.com/user-attachments/assets/54c13d75-2458-4f88-bf48-eae8ed222af1" alt="Image" width="400"/>
+  <img src="https://github.com/user-attachments/assets/f6eb30b8-528e-4331-998a-5ab14e980e8b" alt="Image" width="400"/>
 </div>
 
 ## 💻 Data Structures Used
